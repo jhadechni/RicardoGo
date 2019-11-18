@@ -22,11 +22,7 @@ public class GameOverState extends GameState {
     Background fondo;
     private Fuentes fuente= new Fuentes();
     private AudioPlayer deadMusic;
-    String[] opciones = {
-        "JUGAR",
-        "AYUDA",
-        "SALIR"
-    };
+   
     Color Titulo;
     Font titleFont;
     Font font;
@@ -36,11 +32,11 @@ public class GameOverState extends GameState {
     public GameOverState (GameStateManager gsm) {
         this.gsm = gsm;
         try {
-            fondo = new Background("/Backgrounds/fondo.gif",1);
-            fondo.setVector(-0.3, 0);
-            Titulo = new Color(230, 230, 0);
-            titleFont = fuente.fuente(fuente.font1, 0, 40);
-            font = fuente.fuente(fuente.font2, 0, 20);
+            fondo = new Background("/Backgrounds/lostbg.jpg",1);
+//            fondo.setVector(-0.3, 0);
+//            Titulo = new Color(230, 230, 0);
+//            titleFont = fuente.fuente(fuente.font1, 0, 30);
+//            font = fuente.fuente(fuente.font2, 0, 20);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,19 +60,16 @@ public class GameOverState extends GameState {
         fondo.draw(g);
         /**
          * dibujar título
-         */
-        g.setColor(Titulo);
-        g.setFont(titleFont);
-        g.drawString("GAME OVER!",8,100);
-        /**
-         * Dibujar menú
-         */
-//        g.drawString(String.valueOf(PlayerScore), 30, 40);
-        g.setFont(font);
-        
-        font2 = new Font("Arial", Font.PLAIN, 9);
-        g.setFont(font2);
-        g.drawString("Jaime Sierra.® 2019", 10, 232);
+//         */
+//        g.setColor(Titulo);
+//        g.setFont(titleFont);
+//       
+//        /**
+//         * Dibujar menú
+//         */
+////        g.drawString(String.valueOf(PlayerScore), 30, 40);
+//        g.setFont(font);
+//        
     }
 
     public void keyPressed(int k) {

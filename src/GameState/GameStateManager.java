@@ -15,10 +15,13 @@ public class GameStateManager {
 
     GameState[] gameStates;
     int currentState;
+    public static final int NUMGAMESTATES = 7;
     public static final int MENUSTATE = 0;
     public static final int LEVEL1STATE = 1;
-    public static final int NUMGAMESTATES = 3;
     public static final int GAMEOVERSTATE = 2;
+    public static final int HOWTOPLAYSTATE=4;
+    public static final int ENEMYSTATE=5;
+    public static final int MOVEMENTSSTATE=6;
 
     public GameStateManager() {
         gameStates = new GameState[NUMGAMESTATES];
@@ -37,6 +40,16 @@ public class GameStateManager {
         if (state == GAMEOVERSTATE) {
             gameStates[state] = new GameOverState(this);
         }
+        if (state==HOWTOPLAYSTATE) {
+            gameStates[state] = new HowToPlayState(this);
+        }
+        if (state == ENEMYSTATE) {
+            gameStates[state] = new EnemiesState(this);
+        }
+         if (state == MOVEMENTSSTATE) {
+            gameStates[state] = new Movements(this);
+        }
+  
     }
 
     private void unloadState(int state) {
@@ -70,7 +83,7 @@ public class GameStateManager {
         try {
             gameStates[currentState].keyPressed(k);
         } catch (Exception e) {
-            e.printStackTrace();
+           
         }
         
     }

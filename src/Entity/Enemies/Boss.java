@@ -38,7 +38,7 @@ public class Boss extends Enemy {
         cwidth = 90;
         cheight = 65;
 
-        health = maxHealth = 5;
+        health = maxHealth = 100;
         damage = 1;
 
         // load sprites

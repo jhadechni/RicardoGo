@@ -7,10 +7,6 @@ package GameState;
 
 import Audio.AudioPlayer;
 import Fuentes.Fuentes;
-import Main.GamePanel;
-import Sockets.Cliente;
-import Sockets.Server;
-
 import TileMap.Background;
 import java.awt.Color;
 import java.awt.Font;
@@ -22,18 +18,15 @@ import java.util.HashMap;
  *
  * @author Jaime Sierra
  */
-public class MenuState extends GameState {
-
+public class HowToPlayState extends GameState {
+    
     private Background fondo;
-    private Cliente c= new Cliente();
-    private Server s= new Server();
     private Fuentes fuente = new Fuentes();
     private int currentChoice = 0;
     String[] opciones = {
-        "OFFLINE MODE",
-        "ONNLINE MODE",
-        "AYUDA",
-        "SALIR"
+        "  ENEMIGOS",
+        "MOVIMIENTOS",
+        "  REGRESAR"
     };
     private Color Titulo;
     private Font titleFont;
@@ -41,11 +34,11 @@ public class MenuState extends GameState {
     private Font font2;
     private HashMap<String, AudioPlayer> music;
 
-    public MenuState(GameStateManager gsm) {
+    public HowToPlayState(GameStateManager gsm) {
         this.gsm = gsm;
         try {
-            fondo = new Background("/Backgrounds/fondo.gif", 1);
-            fondo.setVector(-0.5, 0);
+            fondo = new Background("/Backgrounds/howtoplay.png", 1);
+//            fondo.setVector(-0.5, 0);
             Titulo = new Color(230, 230, 0);
             titleFont = fuente.fuente(fuente.font1, 0, 40);
             font = fuente.fuente(fuente.font2, 0, 20);
@@ -79,24 +72,22 @@ public class MenuState extends GameState {
         /**
          * dibujar título
          */
-        g.setColor(Titulo);
-        g.setFont(titleFont);
-        g.drawString("RicardoGo!", 25, 70);
+//        g.setColor(Titulo);
+//        g.setFont(titleFont);
+//        g.drawString("howtoplay!", 25, 70);
         /**
          * Dibujar menú
          */
         g.setFont(font);
         for (int i = 0; i < opciones.length; i++) {
             if (i == currentChoice) {
-                g.setColor(Color.BLACK);
+                g.setColor(Color.WHITE);
             } else {
                 g.setColor(Color.YELLOW);
             }
-            if (i!=0 && i!= 1) {
-                g.drawString(opciones[i], 143, 130 + i * 26);
-            }else{
-                 g.drawString(opciones[i], 103, 130 + i * 26);
-            }
+            
+                g.drawString(opciones[i], 115, 100 + i * 36);
+            
             
         }
 
@@ -110,6 +101,7 @@ public class MenuState extends GameState {
         if (k == KeyEvent.VK_ENTER) {
             music.get("select").play();
             select();
+        
         }
         if (k == KeyEvent.VK_UP) {
             music.get("in").play();
@@ -132,27 +124,23 @@ public class MenuState extends GameState {
     public void keyReleased(int k) {
 
     }
-
-    private void select() {
+      private void select() {
         music.get("music").stop();
         switch (currentChoice) {
             case 0:
-                //Start offline 
-                gsm.setState(GameStateManager.LEVEL1STATE);
+             
+                gsm.setState(GameStateManager.ENEMYSTATE);
                 break;
             case 1:
-               //Start onnline
-               gsm.setState(GameStateManager.LEVEL1STATE);
-               c.setVisible(true);
-               s.setVisible(true);
+            
+                 gsm.setState(GameStateManager.MOVEMENTSSTATE);
+               
                 break;
             case 2:
-                gsm.setState(GameStateManager.HOWTOPLAYSTATE);
-                break;
-            case 3:
-                System.exit(0);
+                gsm.setState(GameStateManager.MENUSTATE);
                 break;
         }
     }
+    
 
 }
