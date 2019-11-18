@@ -77,10 +77,11 @@ public class GameStateManager {
 
     public void keyReleased(int k) {
         try {
-             gameStates[currentState].keyReleased(k);
+            gameStates[currentState].keyReleased(k);
         } catch (Exception e) {
-            e.printStackTrace();
         }
+          
+        
        
     }
 
