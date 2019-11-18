@@ -24,6 +24,7 @@ import java.util.Random;
 import javax.swing.Timer;
 import Audio.*;
 import Entity.Animation;
+import Entity.Enemies.Bee;
 import Entity.Enemies.Boss;
 import Entity.Enemies.Flower;
 import Entity.bossExplosion;
@@ -110,7 +111,7 @@ public class Level1State extends GameState {
                 i--;
                 player.increaseScore(50);
                 explosions.add(new Explosion(e.getX(), e.getY()));
-                System.out.println((int) e.getX());
+//                System.out.println((int) e.getX());
             }
         }
         //update explosions
@@ -124,15 +125,15 @@ public class Level1State extends GameState {
             }
         }
         //update BossExplosion
-        for (int i = 0; i < bossExplosions.size(); i++) {
-            bossExplosions.get(i).update();
-
-            if (bossExplosions.get(i).shouldRemove()) {
-
-                bossExplosions.remove(i);
-                i--;
-            }
-        }
+//        for (int i = 0; i < bossExplosions.size(); i++) {
+//            bossExplosions.get(i).update();
+//
+//            if (bossExplosions.get(i).shouldRemove()) {
+//
+//                bossExplosions.remove(i);
+//                i--;
+//            }
+//        }
 
         //update coins
         for (int i = 0; i < coins.size(); i++) {
@@ -161,8 +162,8 @@ public class Level1State extends GameState {
                 boss.remove(i);
                 i--;
                 player.increaseScore(100);
-                bossExplosions.add(new bossExplosion(boss.get(i).getX(), boss.get(i).getY()));
-                System.out.println((int) boss.get(i).getX());
+                explosions.add(new Explosion(boss.get(i).getX(), boss.get(i).getY()));
+//                System.out.println((int) boss.get(i).getX());
 
             }
         }
@@ -204,10 +205,10 @@ public class Level1State extends GameState {
             explosions.get(i).draw(g);
         }
         //Dibujar bossExplosions
-        for (int i = 0; i < bossExplosions.size(); i++) {
-            bossExplosions.get(i).setMapPosition((int) tileMap.getX(), (int) tileMap.getY());
-            bossExplosions.get(i).draw(g);
-        }
+//        for (int i = 0; i < bossExplosions.size(); i++) {
+//            bossExplosions.get(i).setMapPosition((int) tileMap.getX(), (int) tileMap.getY());
+//            bossExplosions.get(i).draw(g);
+//        }
         //Draw Coins
         for (int i = 0; i < coins.size(); i++) {
             coins.get(i).draw(g);
@@ -289,6 +290,7 @@ public class Level1State extends GameState {
 
         Snail s;
         Flower f;
+        Bee b;
 
         Random r;
         Point[] points = new Point[]{
@@ -308,6 +310,11 @@ public class Level1State extends GameState {
             new Point(2540, 168),
             new Point(2598, 168)
         };
+        Point[] points3= new Point[]{
+             new Point(1912, 45),
+             new Point(1912, 45),
+             new Point(1912, 100),
+        };
         for (int i = 0; i < points.length; i++) {
             int numero = (int) (Math.random() * 2 + 1);
             s = new Snail(tileMap, numero);
@@ -325,6 +332,11 @@ public class Level1State extends GameState {
                 enemies.add(f);
             }
 
+        }
+        for (int i = 0; i < points3.length; i++) {
+            b = new Bee(tileMap);
+            b.setPosition(points3[i].x, points3[i].y);
+            enemies.add(b);
         }
 
     }

@@ -133,7 +133,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Socket miSocket = new Socket("192.168.56.1",9999);
+            Socket miSocket = new Socket("localhost",9999);
             PaqueteMensaje pq= new PaqueteMensaje();
             
             pq.setNick(jTextField2.getText());
@@ -225,6 +225,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             }
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR");
         }
     }
 }

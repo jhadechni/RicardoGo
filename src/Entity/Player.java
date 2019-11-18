@@ -246,12 +246,12 @@ public class Player extends MapObject {
     public void update() {
 
         time += 1;
-//        System.out.println(time);
+//       System.out.println(time);
         // update position
         getNextPosition();
         checkTileMapCollision();
         setPosition(tempX, tempY);
-//       System.out.println(x + "   " + y);
+       System.out.println(x + "   " + y);
 
         // Mirar si se ha detenido el ataque.
         if (currentAction == SCRATCHING) {
@@ -468,7 +468,7 @@ public class Player extends MapObject {
             // fireballs
             for (int j = 0; j < fireBalls.size(); j++) {
                 if (fireBalls.get(j).intersects(bo)) {
-                    bo.hit(fireBallDamage);
+                    bo.hit(1);
                     fireBalls.get(j).setHit();
                     break;
                 }
